@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "ci": "echo CI!",
-    "build": "cd app/ && npm run build"
+    "build": "cd app/ && yarn run build"
   },
   "repository": {
     "type": "git",

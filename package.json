@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "ci": "echo CI!",
-    "build": "cd app/ && yarn run build"
+    "build": "echo ROOTDIR"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,7 @@
     "url": "https://github.com/romerorickyio/react-firebase-app/issues"
   },
   "homepage": "https://github.com/romerorickyio/react-firebase-app#readme",
-  "dependencies": {}
+  "dependencies": {
+    "react-scripts": "^4.0.1"
+  }
 }

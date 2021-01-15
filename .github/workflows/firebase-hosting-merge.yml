@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo-default-env-variables
-        run: |
+      - run: |
                   echo "Home: ${HOME}"
                   echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
                   echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"

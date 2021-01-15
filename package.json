@@ -1,0 +1,20 @@
+{
+  "name": "react-firebase-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ci": "echo CI!",
+    "build": "cd app/ && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romerorickyio/react-firebase-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romerorickyio/react-firebase-app/issues"
+  },
+  "homepage": "https://github.com/romerorickyio/react-firebase-app#readme"
+}

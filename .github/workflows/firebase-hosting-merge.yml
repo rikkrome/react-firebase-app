@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: | 
+      - run: >- 
         cd app/ && 
         yarn && 
         REACT_APP_FIREBASE_API_KEY=$REACT_APP_FIREBASE_API_KEY

@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/romerorickyio/react-firebase-app/issues"
   },
-  "homepage": "https://github.com/romerorickyio/react-firebase-app#readme"
+  "homepage": "https://github.com/romerorickyio/react-firebase-app#readme",
+  "dependencies": {}
 }

@@ -1,0 +1,12 @@
+.dashboard-box {
+    height: 200vh;
+    width: 500px;
+    background-color: seagreen;
+    border-width: 10;
+    border-color: yellow;
+    border-style: solid;
+}
+
+.Dashboard-container {
+    width: 100%;
+}

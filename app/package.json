@@ -17,10 +17,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "prod-env": "REACT_APP_FIREBASE_API_KEY='${{ secrets.REACT_APP_FIREBASE_API_KEY }}' REACT_APP_FIREBASE_APP_ID='${{ secrets.REACT_APP_FIREBASE_APP_ID }}' REACT_APP_FIREBASE_AUTH_DOMAIN='${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}' REACT_APP_FIREBASE_MEASUREMENT_ID='${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}' REACT_APP_FIREBASE_MESSAGING_SENDER_ID='${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}' REACT_APP_FIREBASE_PROJECT_ID='${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}' REACT_APP_FIREBASE_STORAGE_BUCKET='${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}'",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "reset": "",
   },
   "browserslist": {
     "production": [

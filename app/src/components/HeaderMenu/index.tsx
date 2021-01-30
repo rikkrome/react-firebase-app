@@ -96,19 +96,19 @@ const HeaderMenu = ({paths}: {paths: PathsTypes}) => {
     </div>
   ) : null;
 
-  const MobileButton = (
+  const MobileButton = linksArray && linksArray.length ? (
     <button
       className="navbar-toggler"
       type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
       aria-controls="navbarNav"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span className="navbar-toggler-icon" />
     </button>
-  );
+  ) : null;
 
   const BrandSection = (
     <div className="navbar-brand">
@@ -135,9 +135,6 @@ const HeaderMenu = ({paths}: {paths: PathsTypes}) => {
     </div>
   ) : null;
 
-  if (!linksArray) {
-    return null;
-  }
   return (
     <nav className="navbar navbar-expand-lg navbar-light sticky-top">
       <div className="container justify-content-between">

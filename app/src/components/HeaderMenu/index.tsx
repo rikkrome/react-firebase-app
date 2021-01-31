@@ -61,18 +61,17 @@ const HeaderMenu = ({paths}: {paths: PathsTypes}) => {
         id="navbarProfileDropdown"
         role="button"
         data-bs-toggle="dropdown"
-        aria-haspopup="true"
         aria-expanded="false"
       >
         <Avatar uri={profile.photoUrl} size={30} />
       </div>
-      <div className="dropdown-menu" style={{right: 16}} aria-labelledby="navbarProfileDropdown">
+      <div className="dropdown-menu" style={{ left: -100 }}>
         {profileDropdown && Array.isArray(profileDropdown)
           ? profileDropdown.map((item, index) => {
             const divider = profileDropdown.length - 1 > index ? <div className="dropdown-divider" /> : null;
             return (
               <div key={getKey(index)}>
-                <h6 className="ml-3 mt-2">{item.sectionHeader}</h6>
+                <h6 className="ms-3 mt-2">{item.sectionHeader}</h6>
                 {item.paths && Array.isArray(item.paths)
                   ? item.paths.map((pathData, index2) => {
                     return (

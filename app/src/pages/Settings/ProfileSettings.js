@@ -151,7 +151,7 @@ const ProfileSettings = () => {
         <form>
           <div className="form-group">
             <div className="row">
-              <div className="col-12 col-md-4">
+              <div className="col-12 col-md-4 mb-3">
                 <label>First Name</label>
                 <input
                   type="name"
@@ -161,7 +161,7 @@ const ProfileSettings = () => {
                   onChange={(e) => localDispatch({type: 'save_first_name', payload: {firstName: e.target.value}})}
                 />
               </div>
-              <div className="col-12 col-md-4 mt-3 mb-3">
+              <div className="col-12 col-md-4 mb-3">
                 <label>Last Name</label>
                 <input
                   type="name"

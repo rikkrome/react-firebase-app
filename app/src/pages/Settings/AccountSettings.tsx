@@ -10,6 +10,7 @@ import { dlog } from '../../utils/log';
 interface StateTypes {
   initialized: boolean;
   email: string;
+  emailVerifiedSent: boolean;
   editEmail: boolean;
   emailCurrentPassword: string;
   emailErrorMessage: string;
@@ -25,6 +26,7 @@ const passwordMessageBase = { type: '', text: '' };
 const initialState: StateTypes = {
   initialized: false,
   email: '',
+  emailVerifiedSent: false,
   editEmail: false,
   emailCurrentPassword: '',
   emailErrorMessage: '',
@@ -60,6 +62,8 @@ function reducer(state: StateTypes, action: { type: string, payload?: any }) {
       return { ...state, passwordMessage: { type: 'danger', text: payload.errorMessage }, newPassword: '', confirmNewPassword: '', passwordCurrentPassword: '' };
     case 'password_successful_update':
       return { ...state, passwordMessage: { type: 'success', text: 'Saved!' }, newPassword: '', confirmNewPassword: '', passwordCurrentPassword: '', editPassword: false }
+    case 'email_verification_sent':
+      return { ...state, emailVerifiedSent: true }
     case 'reset':
       return { ...initialState };
     default:
@@ -67,11 +71,12 @@ function reducer(state: StateTypes, action: { type: string, payload?: any }) {
   }
 }
 
+
 const ProfileSettings = () => {
   const profile = useSelector((state: any) => state.profile);
-  const { updatePassword, updateEmail } = useAuthActions()
+  const { updatePassword, updateEmail, sendEmailVerification } = useAuthActions()
   const [state, localDispatch] = useReducer(reducer, initialState);
-  const { email, editEmail, emailCurrentPassword, emailErrorMessage, editPassword, passwordCurrentPassword, newPassword, confirmNewPassword, passwordMessage } = state || {};
+  const { email, editEmail, emailCurrentPassword, emailErrorMessage, editPassword, passwordCurrentPassword, newPassword, confirmNewPassword, passwordMessage, emailVerifiedSent } = state || {};
 
   useEffect(() => {
     // effect
@@ -134,6 +139,18 @@ const ProfileSettings = () => {
     </div>
   );
 
+  const onSendEmailVerification = async () => {
+    try {
+      const { error } = await sendEmailVerification();
+      if (!error) {
+        localDispatch({ type: 'email_verification_sent' });
+      }
+      return { error }
+    } catch (err) {
+      dlog('onUpdateEmail errorMessage: ', err)
+    }
+  }
+
   const EmailPreview = (
     <div>
       <div className="row">
@@ -141,12 +158,17 @@ const ProfileSettings = () => {
           {profile.email}
         </div>
       </div>
-      <Button label="Update Email" className="btn btn-link p-0 mt-2 me-3" onClick={() => localDispatch({ type: 'edit_email', payload: { editEmail: true } })} />
-      {!profile.emailVerified ? (
-        <button type="button" className="btn btn-danger ml-2">
-          Verify Email
+      <div className="d-flex flex-row">
+        <Button label="Update Email" className="btn btn-link p-0 mt-2 me-3" onClick={() => localDispatch({ type: 'edit_email', payload: { editEmail: true } })} />
+        {!profile.emailVerified ? (
+          <div className="d-flex flex-row">
+            <button type="button" disabled={emailVerifiedSent} className="btn btn-danger ml-2" onClick={onSendEmailVerification}>
+              Verify Email
         </button>
-      ) : null}
+            {emailVerifiedSent ? <div className="d-flex align-items-center ms-2 text-success">Email Sent!</div> : null}
+          </div>
+        ) : null}
+      </div>
     </div>
   )
   const EmailSection = (

@@ -8,6 +8,7 @@ import StoreProvider, {useSelector} from './providers/Store';
 import {Routes, Paths} from './configs/router.config';
 import BrandIcon from './assets/icons/logo.svg';
 import useLifecycle from './providers/Lifecycle/useLifecycle';
+import SystemAlert from './providers/System/systemAlert';
 
 function PrivateRoute({children, ...rest}: {children: JSX.Element}) {
   const {isAuthorized} = useSelector((state: any) => state.auth);
@@ -75,6 +76,7 @@ function App() {
             </Switch>
           </div>
         </Load>
+        <SystemAlert />
       </StoreProvider>
     </Router>
   );

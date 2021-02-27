@@ -23,7 +23,7 @@ const SystemAlert = () => {
 
     const modal = (
         <div ref={modalRef} className="modal fade" id="alertModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
+            <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-body">
                         {alerts && Array.isArray(alerts) ? alerts.map((item, index) => {
@@ -37,13 +37,16 @@ const SystemAlert = () => {
                             )
                         }) : null}
                     </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
     )
 
     return (
-        <div className="position-absolute top-0 end-0 container-fluid">
+        <div>
             {modal}
         </div>
     )

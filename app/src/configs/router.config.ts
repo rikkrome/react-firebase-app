@@ -74,7 +74,7 @@ export const Routes = {
       key: 'home',
       name: 'Home',
       path: '/',
-      Component: Home,
+      Component: Login,
     },
     {
       key: 'login',

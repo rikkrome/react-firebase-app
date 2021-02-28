@@ -133,7 +133,6 @@ const ProfileSettings = () => {
 
   const BasicBtnOnPress = async () => {
     const res = await profileActions.updateProfile({firstName, lastName});
-    PushAlert(`Saved! ${firstName} ${lastName}`, 'success')
     return res;
   };
 

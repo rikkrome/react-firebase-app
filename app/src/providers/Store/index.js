@@ -1,6 +1,7 @@
 import React, {createContext, useContext, useReducer} from 'react';
 import auth from '../Auth/reducers';
 import profile from '../Profile/reducers';
+import system from '../System/reducers';
 import {dlog} from '../../utils/log';
 import dispatchSideEffects from './dispatchSideEffects';
 
@@ -8,7 +9,7 @@ const StoreContext = createContext();
 
 const initialState = {};
 
-const combinedReducers = {auth, profile};
+const combinedReducers = {auth, profile, system};
 
 function reducer(state, action = {}) {
   try {

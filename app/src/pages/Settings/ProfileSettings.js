@@ -7,6 +7,7 @@ import React, {useEffect, useMemo, useReducer} from 'react';
 import Avatar from '../../components/Avatar';
 import {useSelector} from '../../providers/Store';
 import useProfileActions from '../../providers/Profile/useProfileActions';
+import useSystemActions from '../../providers/System/useSystemActions';
 import useCloudStorageActions from '../../providers/CloudStorage/useCloudStorageActions';
 import SaveBtn from '../../components/SaveBtn';
 import {dlog} from '../../utils/log';
@@ -43,6 +44,7 @@ const ProfileSettings = () => {
 
   const profile = useSelector((state) => state.profile);
   const profileActions = useProfileActions();
+  const {PushAlert} = useSystemActions();
   const cloudStorageActions = useCloudStorageActions();
   const [state, localDispatch] = useReducer(reducer, initialState);
   const {firstName, lastName, selectedImage} = state || {};
@@ -102,14 +104,18 @@ const ProfileSettings = () => {
       <div className="card-body bg-light">
         <div className="row">
           <div className="col d-flex flex-row align-items-center mb-4 ">
-            <Avatar uri={selectedImage && selectedImage.image ? selectedImage.image : profile.photoUrl} size={100} />
-            <div className="p-3 ">
-              <form>
-                <div className="form-group d-flex flex-column ">
-                  <label htmlFor="exampleFormControlFile1">Edit Profile Image</label>
-                  <input type="file" className="form-control" onChange={onImageChange} />
-                </div>
-              </form>
+            <div className="row">
+              <div className="col-12 col-md-3">
+                <Avatar uri={selectedImage && selectedImage.image ? selectedImage.image : profile.photoUrl} size={100} />
+              </div>
+              <div className="col-12 col-md-9 p-3">
+                <form>
+                  <div className="form-group d-flex flex-column ">
+                    <label htmlFor="exampleFormControlFile1">Edit Profile Image</label>
+                    <input type="file" className="form-control" onChange={onImageChange} />
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -147,7 +153,7 @@ const ProfileSettings = () => {
         <form>
           <div className="form-group">
             <div className="row">
-              <div className="col">
+              <div className="col-12 col-md-4 mb-3">
                 <label>First Name</label>
                 <input
                   type="name"
@@ -157,7 +163,7 @@ const ProfileSettings = () => {
                   onChange={(e) => localDispatch({type: 'save_first_name', payload: {firstName: e.target.value}})}
                 />
               </div>
-              <div className="col">
+              <div className="col-12 col-md-4 mb-3">
                 <label>Last Name</label>
                 <input
                   type="name"
@@ -167,7 +173,7 @@ const ProfileSettings = () => {
                   onChange={(e) => localDispatch({type: 'save_last_name', payload: {lastName: e.target.value}})}
                 />
               </div>
-              <div className="col" />
+              <div className="col-12 col-md-4" />
             </div>
           </div>
         </form>

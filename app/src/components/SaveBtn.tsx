@@ -1,40 +1,49 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Button from './Button';
 
 interface PropTypes {
   onClick: () => any;
   disabled: boolean;
 }
-const SaveBtn = React.memo(({onClick, disabled}: PropTypes) => {
+const SaveBtn = React.memo(({ onClick, disabled }: PropTypes) => {
+  const mountedRef = useRef(true);
   const [loading, setLoading] = useState(false);
   const [label, setLabel] = useState('Save');
   const [state, setState] = useState('primary');
 
   useEffect(() => {
-    if (!disabled && label !== 'Save' && state !== 'primary') {
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!disabled && label !== 'Save' && state !== 'primary' && mountedRef.current) {
       setLabel('Save');
       setState('primary');
     }
   }, [disabled, label, state]);
 
   const _onClick = async () => {
-    if (typeof onClick === 'function') {
+    if (typeof onClick === 'function' && mountedRef.current) {
       setLoading(true);
       setState('secondary');
       let error = false;
       if (onClick.constructor.name == 'AsyncFunction') {
-        ({error} = await onClick() || {error: true});
+        ({ error } = await onClick() || { error: true });
       } else {
-        ({error} = onClick() || {error: true})
+        ({ error } = onClick() || { error: true })
       }
-      setLoading(false);
-      if (error) {
-        setLabel('Error');
-        setState('danger');
-        return;
+      if (mountedRef.current) {
+        setLoading(false);
+        if (error) {
+          setLabel('Error');
+          setState('danger');
+          return;
+        }
+        setLabel('Saved!');
+        setState('success');
       }
-      setLabel('Saved!');
-      setState('success');
     }
   };
 

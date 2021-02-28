@@ -164,6 +164,22 @@ const useAuthActions = () => {
     return {error: true};
   }
 
+  const sendEmailVerification = async () => {
+    try {
+      const user = firebase.auth().currentUser;
+      try {
+        await user.sendEmailVerification()
+      } catch (errorMessage) {
+        log('update email re-auth error: ', errorMessage);
+        return {error: true, errorMessage: errorMessage && errorMessage.message ? errorMessage.message : 'Sending email error.'};
+      }
+      return { error: false };
+    } catch (errorMessage) {
+      dlog('Auth updateEmail error: ', errorMessage);
+    }
+    return {error: true};
+  }
+
   return {
     signIn,
     signUp,
@@ -171,6 +187,7 @@ const useAuthActions = () => {
     passwordReset,
     updatePassword,
     updateEmail,
+    sendEmailVerification,
   };
 };
 

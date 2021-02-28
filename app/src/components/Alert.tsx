@@ -1,11 +1,18 @@
 import React from 'react'
 
-const Alert = () => {
+const Alert = ({ text, type }: { text: string; type: string }) => {
+  if (!text) {
+    return null;
+  }
   return (
-    <div className="alert alert-success" role="alert">
-      A sample Alert
+    <div className={`alert alert-${type}`} role="alert">
+      {text}
     </div>
   )
 }
 
+Alert.defaultProps = {
+  text: '',
+  type: 'success'
+}
 export default Alert; 
